@@ -117,9 +117,9 @@ export default function HomePage() {
         </div>
         <p>© {new Date().getFullYear()} ResumeForge. Free professional resume builder.</p>
         <div style={{ marginTop: '.75rem', display: 'flex', gap: '1.5rem', justifyContent: 'center' }}>
-          <a href="#" style={{ color: '#8a9bb0', textDecoration: 'none' }}>Privacy Policy</a>
-          <a href="#" style={{ color: '#8a9bb0', textDecoration: 'none' }}>Terms of Service</a>
-          <a href="#" style={{ color: '#8a9bb0', textDecoration: 'none' }}>Contact</a>
+          <a href="/privacy" style={{ color: '#8a9bb0', textDecoration: 'none' }}>Privacy Policy</a>
+          <a href="/terms" style={{ color: '#8a9bb0', textDecoration: 'none' }}>Terms of Service</a>
+          <a href="/contact" style={{ color: '#8a9bb0', textDecoration: 'none' }}>Contact</a>
         </div>
       </footer>
     </>
