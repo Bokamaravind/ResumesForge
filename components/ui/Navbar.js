@@ -39,16 +39,17 @@ export default function Navbar() {
         </Link>
         {user ? (
           <>
-            <div className="avatar">{initials(user.name)}</div>
-            <span style={{ color: '#c9a84c', fontSize: '.88rem', fontWeight: 500 }}>
-              {user.name.split(' ')[0]}
-            </span>
+
             <Link href="/dashboard" className="btn btn-outline" style={{ fontSize: '.82rem', padding: '7px 16px' }}>
               My Resumes
             </Link>
             <button onClick={logout} className="btn btn-outline" style={{ fontSize: '.82rem', padding: '7px 16px' }}>
               Log Out
             </button>
+            <div className="avatar">{initials(user.name)}</div>
+            <span style={{ color: '#c9a84c', fontSize: '.88rem', fontWeight: 500 }}>
+              {user.name.split(' ')[0]}
+            </span>
           </>
         ) : (
           <>
