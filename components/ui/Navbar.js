@@ -34,6 +34,9 @@ export default function Navbar() {
         Resume<span>Forge</span>
       </Link>
       <div className="nav-links">
+        <Link href="/blog" className="btn btn-outline" style={{ padding: '7px 16px', fontSize: '.82rem' }}>
+          Blog
+        </Link>
         {user ? (
           <>
             <div className="avatar">{initials(user.name)}</div>

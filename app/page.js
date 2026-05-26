@@ -31,6 +31,9 @@ export default function HomePage() {
           <Link href="/login" className="btn btn-outline btn-lg">
             Sign In
           </Link>
+          <Link href="/blog" className="btn btn-outline btn-lg">
+            Career Tips
+          </Link>
         </div>
       </section>
 
@@ -96,13 +99,13 @@ export default function HomePage() {
         <h2 className="section-title" style={{ fontSize: '1.5rem' }}>Resume Tips & Career Advice</h2>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '1.25rem', marginTop: '1.5rem' }}>
           {[
-            { title: 'How to Write a Professional Resume in 2025', slug: '#' },
-            { title: 'Top 10 Resume Mistakes That Cost You the Job', slug: '#' },
-            { title: 'ATS-Friendly Resume: The Complete Guide', slug: '#' },
+            { title: 'How to Write a Professional Resume in 2026', slug: '/blog/how-to-write-resume-freshers-india-2026' },
+            { title: 'Top 10 Resume Mistakes That Cost You the Job', slug: '/blog/top-10-ats-resume-tips' },
+            { title: 'ATS-Friendly Resume: The Complete Guide', slug: '/blog/ats-friendly-resume-the-complete-guide' },
           ].map(p => (
             <a key={p.title} href={p.slug} style={{ display: 'block', padding: '1.1rem', border: '1px solid #e5e7eb', borderRadius: 10, textDecoration: 'none', color: 'inherit', transition: '.2s' }}
-              
-              >
+
+            >
               <div style={{ fontSize: '.72rem', color: '#c9a84c', fontWeight: 600, marginBottom: '.4rem', textTransform: 'uppercase', letterSpacing: '.5px' }}>Career Tips</div>
               <h3 style={{ fontSize: '.92rem', fontWeight: 600, lineHeight: 1.4 }}>{p.title}</h3>
             </a>
@@ -120,6 +123,7 @@ export default function HomePage() {
           <a href="/privacy" style={{ color: '#8a9bb0', textDecoration: 'none' }}>Privacy Policy</a>
           <a href="/terms" style={{ color: '#8a9bb0', textDecoration: 'none' }}>Terms of Service</a>
           <a href="/contact" style={{ color: '#8a9bb0', textDecoration: 'none' }}>Contact</a>
+          <a href="/blog" style={{ color: '#8a9bb0', textDecoration: 'none' }}>Blog</a>
         </div>
       </footer>
     </>
