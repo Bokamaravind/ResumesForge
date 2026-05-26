@@ -1,7 +1,23 @@
+"use client";
 import Link from 'next/link';
 import Navbar from '@/components/ui/Navbar';
 
+import { useRouter } from 'next/navigation';
+
 export default function HomePage() {
+  const router = useRouter();
+  // For client-side localStorage access
+  const handleBuildResume = () => {
+    if (typeof window !== 'undefined') {
+      const user = localStorage.getItem('rf_user');
+      if (user) {
+        router.push('/builder');
+      } else {
+        router.push('/signup');
+      }
+    }
+  };
+
   return (
     <>
       <Navbar />
@@ -25,9 +41,9 @@ export default function HomePage() {
           No watermarks. No credit card. Just results.
         </p>
         <div className="hero-btns">
-          <Link href="/signup" className="btn btn-gold btn-lg">
+          <button className="btn btn-gold btn-lg" onClick={handleBuildResume}>
             Build My Resume →
-          </Link>
+          </button>
           <Link href="/login" className="btn btn-outline btn-lg">
             Sign In
           </Link>
