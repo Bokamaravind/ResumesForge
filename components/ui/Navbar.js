@@ -7,17 +7,37 @@ export default function Navbar() {
   const [user, setUser] = useState(null);
   const router = useRouter();
 
-  useEffect(() => {
+ useEffect(() => {
+  async function loadUser() {
     const stored = localStorage.getItem('rf_user');
-    if (stored) setUser(JSON.parse(stored));
-  }, []);
+    if (stored) { setUser(JSON.parse(stored)); return; }
+
+    // Check NextAuth session (Google login)
+    const res = await fetch('/api/auth/session');
+    const session = await res.json();
+    if (session?.user) {
+      const userData = {
+        id: session.user.id || session.user.email,
+        name: session.user.name,
+        email: session.user.email,
+      };
+      localStorage.setItem('rf_user', JSON.stringify(userData));
+      setUser(userData);
+    }
+  }
+  loadUser();
+}, []);
 
   async function logout() {
-    await fetch('/api/auth/logout', { method: 'POST' });
-    localStorage.removeItem('rf_user');
-    setUser(null);
-    router.push('/');
-  }
+  // Clear normal session
+  await fetch('/api/auth/logout', { method: 'POST' });
+  // Clear Google session
+  const { signOut } = await import('next-auth/react');
+  await signOut({ redirect: false });
+  localStorage.removeItem('rf_user');
+  setUser(null);
+  router.push('/');
+}
 
   function initials(name) {
     return (name || 'U')

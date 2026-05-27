@@ -12,9 +12,26 @@ export default function DashboardPage() {
   const [toast, setToast] = useState(null);
 
   useEffect(() => {
-    if (!localStorage.getItem('rf_user')) { router.push('/login'); return; }
-    fetchResumes();
-  }, [router]);
+  async function checkAuth() {
+    const localUser = localStorage.getItem('rf_user');
+    if (localUser) { fetchResumes(); return; }
+
+    const res = await fetch('/api/auth/session');
+    const session = await res.json();
+
+    if (session?.user) {
+      localStorage.setItem('rf_user', JSON.stringify({
+        id: session.user.id || session.user.email,
+        name: session.user.name,
+        email: session.user.email,
+      }));
+      fetchResumes();
+    } else {
+      router.push('/login');
+    }
+  }
+  checkAuth();
+}, [router]);
 
   async function fetchResumes() {
     try {

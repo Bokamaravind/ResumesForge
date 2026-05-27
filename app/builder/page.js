@@ -146,9 +146,28 @@ export default function BuilderPage() {
   const [toolsInput, setToolsInput] = useState('');
   const [projects, setProjects] = useState([EMPTY_PROJ()]);
 
-  useEffect(() => {
-    if (!localStorage.getItem('rf_user')) router.push('/login');
-  }, [router]);
+useEffect(() => {
+  async function checkAuth() {
+    const localUser = localStorage.getItem('rf_user');
+    if (localUser) return; // normal login — ok
+
+    // Check if logged in via Google (NextAuth session)
+    const res = await fetch('/api/auth/session');
+    const session = await res.json();
+
+    if (session?.user) {
+      // Google login — save to localStorage
+      localStorage.setItem('rf_user', JSON.stringify({
+        id: session.user.id || session.user.email,
+        name: session.user.name,
+        email: session.user.email,
+      }));
+    } else {
+      router.push('/login');
+    }
+  }
+  checkAuth();
+}, [router]);
 
   const skills = skillsInput.split(',').map(s => s.trim()).filter(Boolean);
   const tools = toolsInput.split(',').map(t => t.trim()).filter(Boolean);
