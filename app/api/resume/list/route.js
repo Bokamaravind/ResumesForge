@@ -5,9 +5,16 @@ import { getUserFromRequest } from '@/lib/auth';
 
 export async function GET(request) {
   try {
-    const user = getUserFromRequest(request);
-    if (!user) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+   const user = getUserFromRequest(request);
 
+if (!user) {
+  const cookieHeader = request.headers.get('cookie') || '';
+  const hasNextAuthSession = cookieHeader.includes('next-auth.session-token') ||
+                             cookieHeader.includes('__Secure-next-auth.session-token');
+  if (!hasNextAuthSession) {
+    return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+  }
+}
     await connectDB();
     const resumes = await Resume.find({ userId: user.userId })
       .select('_id title template updatedAt personalInfo.name')

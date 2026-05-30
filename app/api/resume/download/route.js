@@ -6,9 +6,16 @@ import { getUserFromRequest } from '@/lib/auth';
 // Server-side: generate PDF bytes using jsPDF + manual drawing
 export async function POST(request) {
   try {
-    const user = getUserFromRequest(request);
-    if (!user) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+   const user = getUserFromRequest(request);
 
+if (!user) {
+  const cookieHeader = request.headers.get('cookie') || '';
+  const hasNextAuthSession = cookieHeader.includes('next-auth.session-token') ||
+                             cookieHeader.includes('__Secure-next-auth.session-token');
+  if (!hasNextAuthSession) {
+    return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+  }
+}
     const body = await request.json();
     const { resumeData } = body;
 

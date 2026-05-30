@@ -3,9 +3,18 @@ import { getUserFromRequest } from '@/lib/auth';
 
 export async function POST(request) {
   try {
-    const user = getUserFromRequest(request);
-    if (!user) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+   // Check normal login (JWT cookie)
+const user = getUserFromRequest(request);
 
+// Check Google login (NextAuth session cookie)
+if (!user) {
+  const cookieHeader = request.headers.get('cookie') || '';
+  const hasNextAuthSession = cookieHeader.includes('next-auth.session-token') || 
+                             cookieHeader.includes('__Secure-next-auth.session-token');
+  if (!hasNextAuthSession) {
+    return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+  }
+}
     const { type, data } = await request.json();
 
     let prompt = '';
