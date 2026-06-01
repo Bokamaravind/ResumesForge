@@ -420,7 +420,7 @@ export default function BuilderPage() {
             </div>
             <div className="row-2">
               <div className="form-group"><label>Location</label>
-                <input type="text" placeholder="Vijayawada, AP" value={personalInfo.location} onChange={e => setPersonalInfo(p => ({...p,location:e.target.value}))} /></div>
+                <input type="text" placeholder="Delhi, India" value={personalInfo.location} onChange={e => setPersonalInfo(p => ({...p,location:e.target.value}))} /></div>
               <div className="form-group"><label>LinkedIn / Website</label>
                 <input type="text" placeholder="linkedin.com/in/aravind" value={personalInfo.website} onChange={e => setPersonalInfo(p => ({...p,website:e.target.value}))} /></div>
             </div>
@@ -447,7 +447,7 @@ export default function BuilderPage() {
                   <div className="form-group"><label>Job Title</label>
                     <input type="text" placeholder="Full Stack Developer" value={exp.role} onChange={e => updateExp(i,'role',e.target.value)} /></div>
                   <div className="form-group"><label>Company</label>
-                    <input type="text" placeholder="Xverse Technologies" value={exp.company} onChange={e => updateExp(i,'company',e.target.value)} /></div>
+                    <input type="text" placeholder="Amazon" value={exp.company} onChange={e => updateExp(i,'company',e.target.value)} /></div>
                 </div>
                 <div className="form-group">
                   <label>Project/Work Link <span style={{ color:'#9ca3af',fontWeight:400 }}>(optional)</span></label>
@@ -481,7 +481,7 @@ export default function BuilderPage() {
                   <div className="form-group"><label>Degree</label>
                     <input type="text" placeholder="B.Tech CSE" value={edu.degree} onChange={e => updateEdu(i,'degree',e.target.value)} /></div>
                   <div className="form-group"><label>Institution</label>
-                    <input type="text" placeholder="GIIS, Visakhapatnam" value={edu.institution} onChange={e => updateEdu(i,'institution',e.target.value)} /></div>
+                    <input type="text" placeholder="Delhi University" value={edu.institution} onChange={e => updateEdu(i,'institution',e.target.value)} /></div>
                 </div>
                 <div className="row-2">
                   <div className="form-group"><label>Year</label>
