@@ -45,6 +45,7 @@ export default function Navbar() {
 
         {/* Desktop nav */}
         <div className="nav-links nav-desktop">
+          <Link href="/about" style={{ color: '#8a9bb0', textDecoration: 'none' }}>About Us</Link>
           <Link href="/blog" className="btn btn-outline" style={{ fontSize: '.82rem', padding: '7px 14px' }}>Blog</Link>
           {user ? (
             <>

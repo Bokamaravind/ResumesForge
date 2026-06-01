@@ -11,5 +11,6 @@ export default function sitemap() {
     { url: 'https://resumesforge.in/privacy', lastModified: new Date(), changeFrequency: 'monthly', priority: 0.5 },
     { url: 'https://resumesforge.in/terms', lastModified: new Date(), changeFrequency: 'monthly', priority: 0.5 },
     { url: 'https://resumesforge.in/contact', lastModified: new Date(), changeFrequency: 'monthly', priority: 0.5 },
+    { url: 'https://resumesforge.in/about', lastModified: new Date(), changeFrequency: 'monthly', priority: 0.7 },
   ];
 }
